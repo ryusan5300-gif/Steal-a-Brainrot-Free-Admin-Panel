@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steal a Brainrot | FREE ADMIN 2026</title>
+    <style>
+        :root {
+            --bg: #050507;
+            --card: rgba(20, 20, 25, 0.95);
+            --accent: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.4);
+            --success: #00ff88;
+            --error: #ff3e3e;
+            --warning: #ffcc00;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at top right, #1a1a2e 0%, #050507 60%);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Landing Page --- */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .satisfaction-badge { background: rgba(0, 255, 136, 0.1); color: var(--success); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: bold; border: 1px solid var(--success); margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(2rem, 8vw, 4.5rem); margin: 0; background: linear-gradient(to bottom, #fff 50%, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .game-name { color: var(--accent); font-size: 1.5rem; margin-top: 10px; font-weight: 800; }
+        .counter-container { margin: 40px 0; }
+        .counter-num { font-size: 2.5rem; font-weight: 900; }
+        .main-btn { background: #fff; color: #000; padding: 20px 50px; border-radius: 15px; font-weight: 900; border: none; cursor: pointer; transition: 0.3s; }
+        .main-btn:hover { background: var(--accent); box-shadow: 0 0 30px var(--accent-glow); transform: translateY(-3px); }
+
+        /* --- Terminal Section --- */
+        #terminal-section { min-height: 100vh; display: none; justify-content: center; align-items: center; padding: 20px; background: #000; }
+        .panel { background: var(--card); width: 100%; max-width: 420px; padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); text-align: center; backdrop-filter: blur(20px); }
+        .admin-img { width: 90px; height: 90px; margin-bottom: 20px; border-radius: 15px; }
+
+        /* Form & Verify UI */
+        .input-group { text-align: left; margin: 25px 0; }
+        label { display: block; font-size: 11px; color: #666; margin-bottom: 8px; text-transform: uppercase; }
+        input { width: 100%; padding: 15px; background: #08080a; border: 1px solid #222; border-radius: 12px; color: #fff; outline: none; }
+        .verify-step { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .v-mini-btn { background: var(--accent); border: none; padding: 8px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .v-mini-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+        /* --- Queue UI --- */
+        #queue-area { display: none; margin-top: 20px; }
+        .queue-box { background: rgba(255, 204, 0, 0.05); border: 1px solid var(--warning); padding: 25px; border-radius: 20px; color: var(--warning); position: relative; overflow: hidden; }
+        .queue-num { font-size: 3.5rem; font-weight: 900; display: block; margin: 10px 0; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
+        .eta-text { font-size: 11px; color: #aaa; margin-top: 10px; display: block; letter-spacing: 1px; }
+        
+        .loader { display: none; margin: 15px auto; width: 22px; height: 22px; border: 3px solid #222; border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <section class="hero" id="lp-section">
+        <div class="satisfaction-badge">★ 99.4% OF USERS SATISFIED</div>
+        <h1>GET FREE ADMIN</h1>
+        <div class="game-name">Steal a Brainrot</div>
+        <div class="counter-container">
+            <div class="counter-num" id="user-count">142,830</div>
+            <div class="counter-label">Users claimed admin</div>
+        </div>
+        <button class="main-btn" onclick="goToTerminal()">GET ACCESS NOW</button>
+    </section>
+
+    <section id="terminal-section">
+        <div class="panel">
+            <img src="Admin.png" alt="Admin" class="admin-img">
+            <h2 id="terminal-title" style="margin:0;">Cloud Terminal</h2>
+            
+            <div id="input-ui">
+                <div class="input-group">
+                    <label>Roblox Username</label>
+                    <input type="text" id="username" placeholder="Username..." autocomplete="off">
+                </div>
+                <button class="main-btn" style="width:100%;" onclick="startProcess()">送信</button>
+            </div>
+
+            <div id="verify-area" style="display:none; margin-top: 20px;">
+                <p style="color:var(--error); font-size:12px; font-weight:bold; margin-bottom:15px;">認証が必要です (Anti-Bot)</p>
+                <div class="verify-step">
+                    <span style="font-size:12px;">STEP 1: Link Verification</span>
+                    <button class="v-mini-btn" id="b1" onclick="verify(1, 'https://google.com')">START</button>
+                </div>
+                <div class="verify-step">
+                    <span style="font-size:12px;">STEP 2: Cloud Sync</span>
+                    <button class="v-mini-btn" id="b2" onclick="verify(2, 'https://bing.com')" disabled>LOCKED</button>
+                </div>
+            </div>
+
+            <div id="queue-area">
+                <div class="queue-box">
+                    <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px;">POSITION IN QUEUE</span>
+                    <span class="queue-num" id="q-number">10</span>
+                    <span class="eta-text" id="eta-display">ESTIMATED TIME: 00:02:45</span>
+                </div>
+                <p style="font-size: 11px; color: #555; margin-top: 20px; line-height: 1.6;">
+                    サーバー負荷が非常に高くなっています。<br>順番が来るまでブラウザを閉じないでください。
+                </p>
+            </div>
+
+            <div class="loader" id="loader"></div>
+            <div id="status-log" style="font-size:12px; color:var(--accent); margin-top:20px;"></div>
+        </div>
+    </section>
+
+    <script>
+        let baseCount = 142830;
+        setInterval(() => {
+            baseCount += Math.floor(Math.random() * 3);
+            document.getElementById('user-count').innerText = baseCount.toLocaleString();
+        }, 3000);
+
+        function goToTerminal() {
+            document.getElementById('lp-section').style.display = 'none';
+            document.getElementById('terminal-section').style.display = 'flex';
+        }
+
+        function startProcess() {
+            if(!document.getElementById('username').value) return alert("Username required");
+            const log = document.getElementById('status-log');
+            const loader = document.getElementById('loader');
+            loader.style.display = "block";
+            log.innerText = "Syncing with Database...";
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.getElementById('input-ui').style.display = "none";
+                document.getElementById('verify-area').style.display = "block";
+                log.innerText = "";
+            }, 2000);
+        }
+
+        function verify(step, url) {
+            window.open(url, '_blank');
+            const log = document.getElementById('status-log');
+            const loader = document.getElementById('loader');
+            loader.style.display = "block";
+            let time = 60; 
+            const t = setInterval(() => {
+                log.innerText = `Verification in progress... ${time}s`;
+                time--;
+                if(time < 0) {
+                    clearInterval(t);
+                    loader.style.display = "none";
+                    if(step === 1) {
+                        document.getElementById('b1').innerText = "✅";
+                        document.getElementById('b1').disabled = true;
+                        document.getElementById('b2').disabled = false;
+                        log.innerText = "Step 1 Verified.";
+                    } else {
+                        startQueue();
+                    }
+                }
+            }, 1000);
+        }
+
+        function startQueue() {
+            document.getElementById('verify-area').style.display = "none";
+            document.getElementById('status-log').innerText = "";
+            document.getElementById('terminal-title').innerText = "Access Queue";
+            document.getElementById('queue-area').style.display = "block";
+            
+            let currentPos = 10;
+            let etaSeconds = 165; // 2分45秒
+            const qNum = document.getElementById('q-number');
+            const etaDisplay = document.getElementById('eta-display');
+
+            // 順番が減っていく演出
+            const queueInterval = setInterval(() => {
+                if (currentPos > 1) {
+                    currentPos--;
+                    qNum.innerText = currentPos;
+                    // ETAも少しずつ減らす
+                    etaSeconds -= Math.floor(Math.random() * 15) + 5;
+                    updateETA(etaSeconds);
+                } else {
+                    // 1になった時のループ処理
+                    clearInterval(queueInterval);
+                    setInterval(() => {
+                        // 1になったり2になったりを繰り返す
+                        currentPos = (currentPos === 1) ? 2 : 1;
+                        qNum.innerText = currentPos;
+                        // ETAを「Calculating...」や「< 1 min」で固定
+                        etaDisplay.innerText = "ESTIMATED TIME: < 1 MIN";
+                    }, 3500);
+                }
+            }, 5000); // 5秒ごとに減る
+        }
+
+        function updateETA(s) {
+            if (s < 10) s = 10;
+            const mins = Math.floor(s / 60);
+            const secs = s % 60;
+            document.getElementById('eta-display').innerText = `ESTIMATED TIME: 00:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
