@@ -26,73 +26,158 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Landing Page --- */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .satisfaction-badge { background: rgba(0, 255, 136, 0.1); color: var(--success); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: bold; border: 1px solid var(--success); margin-bottom: 20px; }
-        .hero h1 { font-size: clamp(2rem, 8vw, 4.5rem); margin: 0; background: linear-gradient(to bottom, #fff 50%, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .game-name { color: var(--accent); font-size: 1.5rem; margin-top: 10px; font-weight: 800; }
-        .counter-container { margin: 40px 0; }
-        .counter-num { font-size: 2.5rem; font-weight: 900; }
-        .main-btn { background: #fff; color: #000; padding: 20px 50px; border-radius: 15px; font-weight: 900; border: none; cursor: pointer; transition: 0.3s; }
-        .main-btn:hover { background: var(--accent); box-shadow: 0 0 30px var(--accent-glow); transform: translateY(-3px); }
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 70px;
+            background: rgba(5, 5, 7, 0.8);
+            backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-logo { font-weight: 900; color: var(--accent); letter-spacing: 1px; }
+        .nav-tabs { display: flex; gap: 30px; }
+        .nav-tabs a {
+            color: #888; text-decoration: none; font-size: 13px; font-weight: 600;
+            transition: 0.3s; cursor: pointer; text-transform: uppercase;
+        }
+        .nav-tabs a:hover { color: #fff; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 8px; }
+        .lang-btn {
+            background: none; border: none; color: #555; cursor: pointer; padding: 5px 10px; 
+            font-size: 11px; font-weight: bold; transition: 0.3s;
+        }
+        .lang-btn.active { background: var(--accent); color: #000; border-radius: 5px; }
 
-        /* --- Terminal Section --- */
-        #terminal-section { min-height: 100vh; display: none; justify-content: center; align-items: center; padding: 20px; background: #000; }
-        .panel { background: var(--card); width: 100%; max-width: 420px; padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); text-align: center; backdrop-filter: blur(20px); }
-        .admin-img { width: 90px; height: 90px; margin-bottom: 20px; border-radius: 15px; }
-
-        /* Form & Verify UI */
-        .input-group { text-align: left; margin: 25px 0; }
-        label { display: block; font-size: 11px; color: #666; margin-bottom: 8px; text-transform: uppercase; }
-        input { width: 100%; padding: 15px; background: #08080a; border: 1px solid #222; border-radius: 12px; color: #fff; outline: none; }
-        .verify-step { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
-        .v-mini-btn { background: var(--accent); border: none; padding: 8px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .v-mini-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
-
-        /* --- Queue UI --- */
-        #queue-area { display: none; margin-top: 20px; }
-        .queue-box { background: rgba(255, 204, 0, 0.05); border: 1px solid var(--warning); padding: 25px; border-radius: 20px; color: var(--warning); position: relative; overflow: hidden; }
-        .queue-num { font-size: 3.5rem; font-weight: 900; display: block; margin: 10px 0; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
-        .eta-text { font-size: 11px; color: #aaa; margin-top: 10px; display: block; letter-spacing: 1px; }
+        /* --- Sections --- */
+        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 20px; }
         
-        .loader { display: none; margin: 15px auto; width: 22px; height: 22px; border: 3px solid #222; border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        /* Hero */
+        .satisfaction-badge { background: rgba(0, 255, 136, 0.1); color: var(--success); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: bold; border: 1px solid var(--success); margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; background: linear-gradient(to bottom, #fff 50%, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; line-height: 1; }
+        .game-name { color: var(--accent); font-size: 1.8rem; margin-top: 15px; font-weight: 800; text-shadow: 0 0 15px var(--accent-glow); }
+        .counter-container { margin: 40px 0; text-align: center; }
+        .counter-num { font-size: 3.5rem; font-weight: 900; display: block; }
+        .counter-label { color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .main-btn { background: #fff; color: #000; padding: 20px 60px; border-radius: 15px; font-weight: 900; border: none; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        .main-btn:hover { background: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-5px); }
+
+        /* Info Section */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; margin-top: 50px; }
+        .feature-item { background: var(--card); padding: 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); }
+        .feature-item h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
+        .feature-item p { color: #aaa; line-height: 1.6; margin-bottom: 0; }
+
+        /* --- Terminal Fullscreen --- */
+        #terminal-page {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 2000; justify-content: center; align-items: center;
+        }
+        .panel { background: var(--card); width: 100%; max-width: 420px; padding: 40px; border-radius: 35px; border: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; }
+        .admin-img { width: 90px; height: 90px; margin-bottom: 20px; border-radius: 18px; border: 1px solid #222; }
+
+        .input-group { text-align: left; margin: 25px 0; }
+        label { display: block; font-size: 11px; color: #555; margin-bottom: 8px; text-transform: uppercase; }
+        input { width: 100%; padding: 16px; background: #08080a; border: 1px solid #222; border-radius: 12px; color: #fff; outline: none; font-size: 16px; transition: 0.3s; }
+        input:focus { border-color: var(--accent); }
+        .error-hint { color: var(--error); font-size: 11px; margin-top: 8px; display: none; }
+
+        .verify-step { background: rgba(255,255,255,0.03); padding: 18px; border-radius: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .v-mini-btn { background: var(--accent); border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .v-mini-btn:disabled { background: #222; color: #444; cursor: not-allowed; }
+
+        /* Queue UI */
+        #queue-area { display: none; margin-top: 10px; }
+        .queue-box { background: rgba(255, 204, 0, 0.05); border: 1px solid var(--warning); padding: 30px; border-radius: 25px; color: var(--warning); }
+        .queue-num { font-size: 4rem; font-weight: 900; display: block; margin: 5px 0; }
+        .eta-text { font-size: 12px; color: #888; letter-spacing: 1px; }
+
+        /* Notification Toast */
+        #notif-container { position: absolute; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; z-index: 3000; }
+        .toast {
+            background: rgba(20, 20, 25, 0.95); border-left: 4px solid var(--success);
+            padding: 15px 25px; border-radius: 10px; color: #fff; font-size: 13px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: slideIn 0.5s ease forwards, slideOut 0.5s ease 4.5s forwards;
+        }
+        @keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
+        @keyframes slideOut { to { transform: translateX(120%); opacity: 0; } }
+
+        .loader { display: none; margin: 20px auto; width: 25px; height: 25px; border: 3px solid #111; border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <section class="hero" id="lp-section">
-        <div class="satisfaction-badge">★ 99.4% OF USERS SATISFIED</div>
-        <h1>GET FREE ADMIN</h1>
+    <nav>
+        <div class="nav-logo">BRAINROT.ADMIN</div>
+        <div class="nav-tabs">
+            <a href="#hero" data-key="tab-home">Home</a>
+            <a href="#features" data-key="tab-feat">Features</a>
+            <a onclick="openTerminal()" data-key="tab-get">Get Admin</a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="changeLang('ja', this)">JP</button>
+            <button class="lang-btn" onclick="changeLang('en', this)">EN</button>
+        </div>
+    </nav>
+
+    <div id="notif-container"></div>
+
+    <section id="hero" class="hero">
+        <div class="satisfaction-badge" data-key="badge">★ 99.4% OF USERS SATISFIED</div>
+        <h1 data-key="hero-h1">GET FREE ADMIN</h1>
         <div class="game-name">Steal a Brainrot</div>
         <div class="counter-container">
-            <div class="counter-num" id="user-count">142,830</div>
-            <div class="counter-label">Users claimed admin</div>
+            <span class="counter-num" id="user-count">---,---</span>
+            <span class="counter-label" data-key="claimed-label">Users claimed admin</span>
         </div>
-        <button class="main-btn" onclick="goToTerminal()">GET ACCESS NOW</button>
+        <button class="main-btn" onclick="openTerminal()" data-key="hero-btn">GET ACCESS NOW</button>
+        <div style="margin-top: 60px; font-size: 11px; color: #444; letter-spacing: 2px;">SCROLL FOR MORE ↓</div>
     </section>
 
-    <section id="terminal-section">
+    <section id="features" style="background: rgba(255,255,255,0.01);">
+        <h2 style="font-size: 2.5rem; font-weight: 900;" data-key="feat-h2">The Most Powerful Exploit</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3 data-key="f1-h">Instant Sync</h3>
+                <p data-key="f1-p">独自のクラウド同期システムにより、全サーバーでAdmin権限が即座に有効化されます。面倒な再設定は不要です。</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-key="f2-h">Zero Trace</h3>
+                <p data-key="f2-p">最新のスクリプト難読化により、Robloxの監視システムを完全に回避。アカウントの安全性は100%保証されます。</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-key="f3-h">Auto Update</h3>
+                <p data-key="f3-p">ゲームのアップデートに合わせてスクリプトも自動更新。2026年最新の全コマンドが利用可能です。</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="terminal-page">
         <div class="panel">
             <img src="Admin.png" alt="Admin" class="admin-img">
             <h2 id="terminal-title" style="margin:0;">Cloud Terminal</h2>
             
             <div id="input-ui">
                 <div class="input-group">
-                    <label>Roblox Username</label>
+                    <label data-key="label-user">Roblox Username</label>
                     <input type="text" id="username" placeholder="Username..." autocomplete="off">
+                    <div id="error-hint" class="error-hint" data-key="err-name">ユーザーネームは半角英数字3〜20文字以内にする必要があります。</div>
                 </div>
-                <button class="main-btn" style="width:100%;" onclick="startProcess()">送信</button>
+                <button class="main-btn" style="width:100%;" onclick="startProcess()" data-key="btn-send">送信</button>
+                <button onclick="closeTerminal()" style="background:none; border:none; color:#444; margin-top:20px; cursor:pointer; font-size:12px;" data-key="btn-cancel">キャンセル</button>
             </div>
 
             <div id="verify-area" style="display:none; margin-top: 20px;">
-                <p style="color:var(--error); font-size:12px; font-weight:bold; margin-bottom:15px;">認証が必要です (Anti-Bot)</p>
+                <p style="color:var(--error); font-size:12px; font-weight:bold; margin-bottom:20px;" data-key="verify-title">認証が必要です (Anti-Bot)</p>
                 <div class="verify-step">
-                    <span style="font-size:12px;">STEP 1: Link Verification</span>
+                    <span style="font-size:12px;" data-key="step1">STEP 1: Link Auth</span>
                     <button class="v-mini-btn" id="b1" onclick="verify(1, 'https://google.com')">START</button>
                 </div>
                 <div class="verify-step">
-                    <span style="font-size:12px;">STEP 2: Cloud Sync</span>
+                    <span style="font-size:12px;" data-key="step2">STEP 2: Cloud Sync</span>
                     <button class="v-mini-btn" id="b2" onclick="verify(2, 'https://bing.com')" disabled>LOCKED</button>
                 </div>
             </div>
@@ -103,50 +188,118 @@
                     <span class="queue-num" id="q-number">10</span>
                     <span class="eta-text" id="eta-display">ESTIMATED TIME: 00:02:45</span>
                 </div>
-                <p style="font-size: 11px; color: #555; margin-top: 20px; line-height: 1.6;">
-                    サーバー負荷が非常に高くなっています。<br>順番が来るまでブラウザを閉じないでください。
+                <p style="font-size: 11px; color: #555; margin-top: 25px; line-height: 1.6;" data-key="queue-p">
+                    現在アクセスが集中しています。順番が来るまでブラウザを閉じないでください。
                 </p>
             </div>
 
             <div class="loader" id="loader"></div>
-            <div id="status-log" style="font-size:12px; color:var(--accent); margin-top:20px;"></div>
+            <div id="status-log" style="font-size:12px; color:var(--accent); margin-top:20px; font-weight:bold;"></div>
         </div>
-    </section>
+    </div>
 
     <script>
-        let baseCount = 142830;
-        setInterval(() => {
-            baseCount += Math.floor(Math.random() * 3);
-            document.getElementById('user-count').innerText = baseCount.toLocaleString();
-        }, 3000);
+        const langData = {
+            ja: {
+                "tab-home": "ホーム", "tab-feat": "特徴", "tab-get": "Admin取得",
+                "badge": "★ 99.4% のユーザーが満足", "hero-h1": "FREE ADMIN 取得",
+                "claimed-label": "ユーザーがAdminを獲得済み", "hero-btn": "今すぐアクセス",
+                "feat-h2": "最強の権限を手に入れろ",
+                "f1-h": "即時同期", "f1-p": "独自のクラウドシステムにより、全サーバーで権限が即座に有効化されます。",
+                "f2-h": "検知不可", "f2-p": "最新の難読化により、BANのリスクはゼロ。安全に楽しめます。",
+                "f3-h": "自動更新", "f3-p": "ゲームの更新に合わせ自動アップデート。常に最新コマンドが使えます。",
+                "label-user": "Roblox ユーザー名", "err-name": "ユーザーネームは半角英数字3〜20文字以内にする必要があります。",
+                "btn-send": "送信", "btn-cancel": "キャンセル", "verify-title": "⚠ 認証が必要です (Anti-Bot)",
+                "step1": "STEP 1: リンク認証", "step2": "STEP 2: クラウド同期",
+                "queue-p": "現在アクセスが集中しています。順番が来るまで閉じないでください。",
+                "toast-msg": "が Admin を入手しました！"
+            },
+            en: {
+                "tab-home": "Home", "tab-feat": "Features", "tab-get": "Get Admin",
+                "badge": "★ 99.4% OF USERS SATISFIED", "hero-h1": "GET FREE ADMIN",
+                "claimed-label": "Users claimed admin", "hero-btn": "GET ACCESS NOW",
+                "feat-h2": "The Most Powerful Exploit",
+                "f1-h": "Instant Sync", "f1-p": "Cloud sync system enables admin rights across all servers instantly.",
+                "f2-h": "Zero Trace", "f2-p": "Advanced obfuscation avoids monitoring. 100% BAN safe.",
+                "f3-h": "Auto Update", "f3-p": "Script updates automatically with the game. All 2026 commands ready.",
+                "label-user": "Roblox Username", "err-name": "Username must be 3-20 alphanumeric characters.",
+                "btn-send": "SEND", "btn-cancel": "CANCEL", "verify-title": "⚠ Verification Required (Anti-Bot)",
+                "step1": "STEP 1: Link Auth", "step2": "STEP 2: Cloud Sync",
+                "queue-p": "High traffic detected. Please stay in queue and do not close.",
+                "toast-msg": " claimed Admin!"
+            }
+        };
 
-        function goToTerminal() {
-            document.getElementById('lp-section').style.display = 'none';
-            document.getElementById('terminal-section').style.display = 'flex';
+        let currentLang = 'ja';
+
+        // --- カウンター (localStorageで保持) ---
+        let count = localStorage.getItem('claimedCount') ? parseInt(localStorage.getItem('claimedCount')) : 142830;
+        function updateCountDisplay() {
+            document.getElementById('user-count').innerText = count.toLocaleString();
+            localStorage.setItem('claimedCount', count);
+        }
+        updateCountDisplay();
+        setInterval(() => { count += Math.floor(Math.random() * 2); updateCountDisplay(); }, 7000);
+
+        // --- 言語切り替え ---
+        function changeLang(lang, btn) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.innerText = langData[lang][key];
+            });
         }
 
+        // --- 画面操作 ---
+        function openTerminal() {
+            document.getElementById('terminal-page').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            startToasts();
+        }
+        function closeTerminal() {
+            document.getElementById('terminal-page').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- プロセス開始 ---
         function startProcess() {
-            if(!document.getElementById('username').value) return alert("Username required");
-            const log = document.getElementById('status-log');
+            const userBox = document.getElementById('username');
+            const errHint = document.getElementById('error-hint');
+            const val = userBox.value;
+            const regex = /^[a-zA-Z0-9]{3,20}$/;
+
+            if(!regex.test(val)) {
+                errHint.style.display = "block";
+                userBox.style.borderColor = "var(--error)";
+                return;
+            }
+            errHint.style.display = "none";
+            userBox.style.borderColor = "#222";
+
             const loader = document.getElementById('loader');
+            const log = document.getElementById('status-log');
             loader.style.display = "block";
-            log.innerText = "Syncing with Database...";
+            log.innerText = "Connecting to Global Cloud...";
+
             setTimeout(() => {
                 loader.style.display = "none";
                 document.getElementById('input-ui').style.display = "none";
                 document.getElementById('verify-area').style.display = "block";
                 log.innerText = "";
-            }, 2000);
+            }, 2500);
         }
 
+        // --- 認証 ---
         function verify(step, url) {
             window.open(url, '_blank');
-            const log = document.getElementById('status-log');
             const loader = document.getElementById('loader');
+            const log = document.getElementById('status-log');
             loader.style.display = "block";
-            let time = 60; 
+            let time = 60;
             const t = setInterval(() => {
-                log.innerText = `Verification in progress... ${time}s`;
+                log.innerText = `Verifying... ${time}s`;
                 time--;
                 if(time < 0) {
                     clearInterval(t);
@@ -163,44 +316,58 @@
             }, 1000);
         }
 
+        // --- 無限キュー ---
         function startQueue() {
             document.getElementById('verify-area').style.display = "none";
             document.getElementById('status-log').innerText = "";
             document.getElementById('terminal-title').innerText = "Access Queue";
             document.getElementById('queue-area').style.display = "block";
             
-            let currentPos = 10;
-            let etaSeconds = 165; // 2分45秒
+            let pos = 10;
+            let eta = 165;
             const qNum = document.getElementById('q-number');
-            const etaDisplay = document.getElementById('eta-display');
+            const etaDisp = document.getElementById('eta-display');
 
-            // 順番が減っていく演出
-            const queueInterval = setInterval(() => {
-                if (currentPos > 1) {
-                    currentPos--;
-                    qNum.innerText = currentPos;
-                    // ETAも少しずつ減らす
-                    etaSeconds -= Math.floor(Math.random() * 15) + 5;
-                    updateETA(etaSeconds);
+            const qInterval = setInterval(() => {
+                if (pos > 1) {
+                    pos--;
+                    qNum.innerText = pos;
+                    eta -= 15;
+                    updateETA(eta);
                 } else {
-                    // 1になった時のループ処理
-                    clearInterval(queueInterval);
+                    clearInterval(qInterval);
                     setInterval(() => {
-                        // 1になったり2になったりを繰り返す
-                        currentPos = (currentPos === 1) ? 2 : 1;
-                        qNum.innerText = currentPos;
-                        // ETAを「Calculating...」や「< 1 min」で固定
-                        etaDisplay.innerText = "ESTIMATED TIME: < 1 MIN";
-                    }, 3500);
+                        pos = (pos === 1) ? 2 : 1;
+                        qNum.innerText = pos;
+                        etaDisp.innerText = "ESTIMATED TIME: < 1 MIN";
+                    }, 8000); // 8秒おきに1↔2ループ
                 }
-            }, 5000); // 5秒ごとに減る
+            }, 15000); // 15秒おきに減少
         }
 
         function updateETA(s) {
             if (s < 10) s = 10;
-            const mins = Math.floor(s / 60);
-            const secs = s % 60;
-            document.getElementById('eta-display').innerText = `ESTIMATED TIME: 00:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            const m = Math.floor(s / 60);
+            const sec = s % 60;
+            document.getElementById('eta-display').innerText = `ESTIMATED TIME: 00:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        // --- ライブ通知 ---
+        function startToasts() {
+            const container = document.getElementById('notif-container');
+            const users = ["Gamer_X", "NoobHunter", "AdminGod", "Robloxian99", "Skibidi_01", "Shadow", "Guest_44", "Legend", "Z_Exploit", "AdminPro"];
+            
+            const spawn = () => {
+                if(document.getElementById('terminal-page').style.display !== 'flex') return;
+                const user = users[Math.floor(Math.random()*users.length)] + Math.floor(Math.random()*99);
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerText = `🎉 ${user} ${langData[currentLang]['toast-msg']}`;
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 5000);
+                setTimeout(spawn, Math.random() * 4000 + 4000);
+            };
+            spawn();
         }
     </script>
 </body>
