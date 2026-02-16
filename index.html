@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Steal a Brainrot | FREE ADMIN 2026</title>
     <style>
         :root {
@@ -15,97 +15,146 @@
             --warning: #ffcc00;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
             background-color: var(--bg);
             background-image: radial-gradient(circle at top right, #1a1a2e 0%, #050507 60%);
             color: #fff;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            line-height: 1.5;
         }
 
         /* --- Navigation --- */
         nav {
             position: fixed;
-            top: 0; width: 100%; height: 70px;
-            background: rgba(5, 5, 7, 0.8);
+            top: 0; width: 100%; height: 60px;
+            background: rgba(5, 5, 7, 0.85);
             backdrop-filter: blur(15px);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 40px; z-index: 1000;
+            padding: 0 15px; z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-logo { font-weight: 900; color: var(--accent); letter-spacing: 1px; }
-        .nav-tabs { display: flex; gap: 30px; }
+        .nav-logo { font-weight: 900; color: var(--accent); letter-spacing: 1px; font-size: 0.85rem; }
+        .nav-tabs { display: flex; gap: 12px; }
         .nav-tabs a {
-            color: #888; text-decoration: none; font-size: 13px; font-weight: 600;
+            color: #888; text-decoration: none; font-size: 10px; font-weight: 600;
             transition: 0.3s; cursor: pointer; text-transform: uppercase;
         }
         .nav-tabs a:hover { color: #fff; }
-        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 8px; }
+        
+        .lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,0.05); padding: 2px; border-radius: 6px; }
         .lang-btn {
-            background: none; border: none; color: #555; cursor: pointer; padding: 5px 10px; 
-            font-size: 11px; font-weight: bold; transition: 0.3s;
+            background: none; border: none; color: #555; cursor: pointer; padding: 4px 6px; 
+            font-size: 9px; font-weight: bold; transition: 0.3s;
         }
-        .lang-btn.active { background: var(--accent); color: #000; border-radius: 5px; }
+        .lang-btn.active { background: var(--accent); color: #000; border-radius: 4px; }
 
         /* --- Sections --- */
-        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 20px; }
+        section { 
+            min-height: 100vh; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            padding: 80px 20px; text-align: center; 
+        }
         
-        /* Hero */
-        .satisfaction-badge { background: rgba(0, 255, 136, 0.1); color: var(--success); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: bold; border: 1px solid var(--success); margin-bottom: 20px; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; background: linear-gradient(to bottom, #fff 50%, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; line-height: 1; }
-        .game-name { color: var(--accent); font-size: 1.8rem; margin-top: 15px; font-weight: 800; text-shadow: 0 0 15px var(--accent-glow); }
-        .counter-container { margin: 40px 0; text-align: center; }
-        .counter-num { font-size: 3.5rem; font-weight: 900; display: block; }
-        .counter-label { color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        /* Hero Section */
+        .satisfaction-badge { 
+            background: rgba(0, 255, 136, 0.1); color: var(--success); 
+            padding: 6px 15px; border-radius: 50px; font-size: 10px; font-weight: bold; 
+            border: 1px solid var(--success); margin-bottom: 15px; 
+        }
+        .hero h1 { 
+            font-size: clamp(2.2rem, 10vw, 5rem); margin: 0; 
+            background: linear-gradient(to bottom, #fff 50%, #555); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            font-weight: 900; line-height: 1.1; 
+        }
+        .game-name { 
+            color: var(--accent); font-size: clamp(1.1rem, 4vw, 1.8rem); 
+            margin-top: 10px; font-weight: 800; text-shadow: 0 0 15px var(--accent-glow); 
+        }
+        .counter-container { margin: 25px 0; }
+        .counter-num { font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 900; display: block; }
+        .counter-label { color: #666; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
 
-        .main-btn { background: #fff; color: #000; padding: 20px 60px; border-radius: 15px; font-weight: 900; border: none; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
-        .main-btn:hover { background: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-5px); }
+        .main-btn { 
+            background: #fff; color: #000; padding: 16px 35px; border-radius: 12px; 
+            font-weight: 900; border: none; cursor: pointer; transition: 0.3s; 
+            font-size: 1rem; width: 100%; max-width: 280px; 
+        }
+        .main-btn:hover { background: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-3px); }
 
-        /* Info Section */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; margin-top: 50px; }
-        .feature-item { background: var(--card); padding: 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); }
-        .feature-item h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
-        .feature-item p { color: #aaa; line-height: 1.6; margin-bottom: 0; }
+        /* Features Section */
+        .features-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 15px; width: 100%; max-width: 1000px; margin-top: 30px; 
+        }
+        .feature-item { 
+            background: var(--card); padding: 25px; border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.05); text-align: left; 
+        }
+        .feature-item h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 1.2rem; }
+        .feature-item p { color: #aaa; line-height: 1.5; font-size: 13px; margin: 0; }
 
-        /* --- Terminal Fullscreen --- */
+        /* --- Terminal Overlay --- */
         #terminal-page {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 2000; justify-content: center; align-items: center;
+            background: #000; z-index: 2000; justify-content: center; align-items: center; padding: 15px;
         }
-        .panel { background: var(--card); width: 100%; max-width: 420px; padding: 40px; border-radius: 35px; border: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; }
-        .admin-img { width: 90px; height: 90px; margin-bottom: 20px; border-radius: 18px; border: 1px solid #222; }
+        .panel { 
+            background: var(--card); width: 100%; max-width: 380px; padding: 30px 20px; 
+            border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); text-align: center; 
+            position: relative; backdrop-filter: blur(20px);
+        }
+        .admin-img { width: 70px; height: 70px; margin-bottom: 15px; border-radius: 15px; border: 1px solid #222; }
 
-        .input-group { text-align: left; margin: 25px 0; }
-        label { display: block; font-size: 11px; color: #555; margin-bottom: 8px; text-transform: uppercase; }
-        input { width: 100%; padding: 16px; background: #08080a; border: 1px solid #222; border-radius: 12px; color: #fff; outline: none; font-size: 16px; transition: 0.3s; }
+        .input-group { text-align: left; margin: 20px 0; }
+        label { display: block; font-size: 10px; color: #555; margin-bottom: 6px; text-transform: uppercase; }
+        input { 
+            width: 100%; padding: 12px; background: #08080a; border: 1px solid #222; 
+            border-radius: 10px; color: #fff; outline: none; font-size: 16px; transition: 0.3s; 
+        }
         input:focus { border-color: var(--accent); }
-        .error-hint { color: var(--error); font-size: 11px; margin-top: 8px; display: none; }
+        .error-hint { color: var(--error); font-size: 10px; margin-top: 6px; display: none; }
 
-        .verify-step { background: rgba(255,255,255,0.03); padding: 18px; border-radius: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-        .v-mini-btn { background: var(--accent); border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .verify-step { 
+            background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; 
+            margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; 
+        }
+        .v-mini-btn { background: var(--accent); border: none; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; }
         .v-mini-btn:disabled { background: #222; color: #444; cursor: not-allowed; }
 
         /* Queue UI */
         #queue-area { display: none; margin-top: 10px; }
-        .queue-box { background: rgba(255, 204, 0, 0.05); border: 1px solid var(--warning); padding: 30px; border-radius: 25px; color: var(--warning); }
-        .queue-num { font-size: 4rem; font-weight: 900; display: block; margin: 5px 0; }
-        .eta-text { font-size: 12px; color: #888; letter-spacing: 1px; }
+        .queue-box { background: rgba(255, 204, 0, 0.05); border: 1px solid var(--warning); padding: 20px; border-radius: 15px; color: var(--warning); }
+        .queue-num { font-size: 3rem; font-weight: 900; display: block; margin: 5px 0; }
+        .eta-text { font-size: 10px; color: #888; letter-spacing: 1px; }
 
-        /* Notification Toast */
-        #notif-container { position: absolute; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; z-index: 3000; }
+        /* Notification Toast (Mobile Optimized) */
+        #notif-container { position: fixed; bottom: 15px; right: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; pointer-events: none; z-index: 3000; }
         .toast {
-            background: rgba(20, 20, 25, 0.95); border-left: 4px solid var(--success);
-            padding: 15px 25px; border-radius: 10px; color: #fff; font-size: 13px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: slideIn 0.5s ease forwards, slideOut 0.5s ease 4.5s forwards;
+            background: rgba(20, 20, 25, 0.98); border-left: 4px solid var(--success);
+            padding: 10px 12px; border-radius: 8px; color: #fff; font-size: 11px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+            animation: slideIn 0.4s ease forwards, slideOut 0.4s ease 4.5s forwards;
+            width: 100%; max-width: 300px; margin: 0 auto;
         }
-        @keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
-        @keyframes slideOut { to { transform: translateX(120%); opacity: 0; } }
 
-        .loader { display: none; margin: 20px auto; width: 25px; height: 25px; border: 3px solid #111; border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideOut { to { opacity: 0; transform: scale(0.9); } }
+
+        .loader { display: none; margin: 15px auto; width: 20px; height: 20px; border: 2px solid #111; border-top: 2px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 480px) {
+            .nav-logo { font-size: 0.75rem; }
+            .nav-tabs { gap: 8px; }
+            section { padding: 60px 15px; }
+            .panel { padding: 25px 15px; }
+        }
     </style>
 </head>
 <body>
@@ -134,11 +183,11 @@
             <span class="counter-label" data-key="claimed-label">Users claimed admin</span>
         </div>
         <button class="main-btn" onclick="openTerminal()" data-key="hero-btn">GET ACCESS NOW</button>
-        <div style="margin-top: 60px; font-size: 11px; color: #444; letter-spacing: 2px;">SCROLL FOR MORE ↓</div>
+        <div style="margin-top: 30px; font-size: 9px; color: #444; letter-spacing: 2px;">SCROLL FOR MORE ↓</div>
     </section>
 
     <section id="features" style="background: rgba(255,255,255,0.01);">
-        <h2 style="font-size: 2.5rem; font-weight: 900;" data-key="feat-h2">The Most Powerful Exploit</h2>
+        <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 20px;" data-key="feat-h2">The Most Powerful Exploit</h2>
         <div class="features-grid">
             <div class="feature-item">
                 <h3 data-key="f1-h">Instant Sync</h3>
@@ -158,7 +207,7 @@
     <div id="terminal-page">
         <div class="panel">
             <img src="Admin.png" alt="Admin" class="admin-img">
-            <h2 id="terminal-title" style="margin:0;">Cloud Terminal</h2>
+            <h2 id="terminal-title" style="margin:0; font-size: 1.2rem;">Cloud Terminal</h2>
             
             <div id="input-ui">
                 <div class="input-group">
@@ -166,35 +215,35 @@
                     <input type="text" id="username" placeholder="Username..." autocomplete="off">
                     <div id="error-hint" class="error-hint" data-key="err-name">ユーザーネームは半角英数字3〜20文字以内にする必要があります。</div>
                 </div>
-                <button class="main-btn" style="width:100%;" onclick="startProcess()" data-key="btn-send">送信</button>
-                <button onclick="closeTerminal()" style="background:none; border:none; color:#444; margin-top:20px; cursor:pointer; font-size:12px;" data-key="btn-cancel">キャンセル</button>
+                <button class="main-btn" style="width:100%; max-width: none;" onclick="startProcess()" data-key="btn-send">送信</button>
+                <button onclick="closeTerminal()" style="background:none; border:none; color:#444; margin-top:15px; cursor:pointer; font-size:10px;" data-key="btn-cancel">キャンセル</button>
             </div>
 
-            <div id="verify-area" style="display:none; margin-top: 20px;">
-                <p style="color:var(--error); font-size:12px; font-weight:bold; margin-bottom:20px;" data-key="verify-title">認証が必要です (Anti-Bot)</p>
+            <div id="verify-area" style="display:none; margin-top: 15px;">
+                <p style="color:var(--error); font-size:11px; font-weight:bold; margin-bottom:12px;" data-key="verify-title">認証が必要です (Anti-Bot)</p>
                 <div class="verify-step">
-                    <span style="font-size:12px;" data-key="step1">STEP 1: Link Auth</span>
+                    <span style="font-size:11px;" data-key="step1">STEP 1: Link Auth</span>
                     <button class="v-mini-btn" id="b1" onclick="verify(1, 'https://google.com')">START</button>
                 </div>
                 <div class="verify-step">
-                    <span style="font-size:12px;" data-key="step2">STEP 2: Cloud Sync</span>
+                    <span style="font-size:11px;" data-key="step2">STEP 2: Cloud Sync</span>
                     <button class="v-mini-btn" id="b2" onclick="verify(2, 'https://bing.com')" disabled>LOCKED</button>
                 </div>
             </div>
 
             <div id="queue-area">
                 <div class="queue-box">
-                    <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px;">POSITION IN QUEUE</span>
+                    <span style="font-size: 9px; font-weight: 800; letter-spacing: 1px;">POSITION IN QUEUE</span>
                     <span class="queue-num" id="q-number">10</span>
                     <span class="eta-text" id="eta-display">ESTIMATED TIME: 00:02:45</span>
                 </div>
-                <p style="font-size: 11px; color: #555; margin-top: 25px; line-height: 1.6;" data-key="queue-p">
+                <p style="font-size: 10px; color: #555; margin-top: 15px; line-height: 1.5;" data-key="queue-p">
                     現在アクセスが集中しています。順番が来るまでブラウザを閉じないでください。
                 </p>
             </div>
 
             <div class="loader" id="loader"></div>
-            <div id="status-log" style="font-size:12px; color:var(--accent); margin-top:20px; font-weight:bold;"></div>
+            <div id="status-log" style="font-size:11px; color:var(--accent); margin-top:12px; font-weight:bold;"></div>
         </div>
     </div>
 
@@ -232,7 +281,7 @@
 
         let currentLang = 'ja';
 
-        // --- カウンター (localStorageで保持) ---
+        // --- カウンター (localStorage保存) ---
         let count = localStorage.getItem('claimedCount') ? parseInt(localStorage.getItem('claimedCount')) : 142830;
         function updateCountDisplay() {
             document.getElementById('user-count').innerText = count.toLocaleString();
@@ -252,7 +301,7 @@
             });
         }
 
-        // --- 画面操作 ---
+        // --- ターミナル開閉 ---
         function openTerminal() {
             document.getElementById('terminal-page').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -288,10 +337,10 @@
                 document.getElementById('input-ui').style.display = "none";
                 document.getElementById('verify-area').style.display = "block";
                 log.innerText = "";
-            }, 2500);
+            }, 2000);
         }
 
-        // --- 認証 ---
+        // --- 認証処理 ---
         function verify(step, url) {
             window.open(url, '_blank');
             const loader = document.getElementById('loader');
@@ -316,7 +365,7 @@
             }, 1000);
         }
 
-        // --- 無限キュー ---
+        // --- 無限キュー演出 ---
         function startQueue() {
             document.getElementById('verify-area').style.display = "none";
             document.getElementById('status-log').innerText = "";
@@ -332,7 +381,7 @@
                 if (pos > 1) {
                     pos--;
                     qNum.innerText = pos;
-                    eta -= 15;
+                    eta -= Math.floor(Math.random() * 15) + 5;
                     updateETA(eta);
                 } else {
                     clearInterval(qInterval);
@@ -340,9 +389,9 @@
                         pos = (pos === 1) ? 2 : 1;
                         qNum.innerText = pos;
                         etaDisp.innerText = "ESTIMATED TIME: < 1 MIN";
-                    }, 8000); // 8秒おきに1↔2ループ
+                    }, 8000);
                 }
-            }, 15000); // 15秒おきに減少
+            }, 10000);
         }
 
         function updateETA(s) {
@@ -365,7 +414,7 @@
                 toast.innerText = `🎉 ${user} ${langData[currentLang]['toast-msg']}`;
                 container.appendChild(toast);
                 setTimeout(() => toast.remove(), 5000);
-                setTimeout(spawn, Math.random() * 4000 + 4000);
+                setTimeout(spawn, Math.random() * 5000 + 3000);
             };
             spawn();
         }
